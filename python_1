@@ -1,0 +1,23 @@
+import requests
+
+# Function to get information about a specific Roblox game
+def get_game_info(game_id):
+    url = f"https://api.roblox.com/marketplace/productinfo?assetId={game_id}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        game_info = response.json()
+        return game_info
+    else:
+        print("Failed to fetch game information.")
+        return None
+
+# Example usage: Get information about a game with ID 123456789
+game_id = 123456789
+game_info = get_game_info(game_id)
+if game_info:
+    print("Game Information:")
+    print("Name:", game_info["Name"])
+    print("Description:", game_info["Description"])
+    print("Price:", game_info["PriceInRobux"])
+    print("Sales:", game_info["Sales"])
+    print("Creator:", game_info["Creator"]["Name"])
