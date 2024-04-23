@@ -1,0 +1,38 @@
+import random
+
+# Define a dictionary of questions and answers about animals
+animal_questions = {
+    "What is the largest mammal?": "Blue whale",
+    "What is the fastest land animal?": "Cheetah",
+    "Which bird can fly backward?": "Hummingbird",
+    "What is the tallest animal on Earth?": "Giraffe",
+    "What animal never sleeps?": "Bullfrog"
+}
+
+# Function to ask a random question
+def ask_question():
+    question = random.choice(list(animal_questions.keys()))
+    print(question)
+    return question
+
+# Main game loop
+def animal_quiz():
+    score = 0
+    print("Welcome to the Animal Quiz!")
+    print("Type 'quit' to end the game.")
+    while True:
+        question = ask_question()
+        user_answer = input("Your answer: ").strip().lower()
+        if user_answer == "quit":
+            break
+        correct_answer = animal_questions[question].lower()
+        if user_answer == correct_answer:
+            print("Correct!")
+            score += 1
+        else:
+            print("Incorrect. The correct answer is:", correct_answer)
+        print("Your current score is:", score)
+        print()
+
+# Start the game
+animal_quiz()
