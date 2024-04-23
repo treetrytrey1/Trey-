@@ -1,0 +1,45 @@
+import pygame
+import sys
+
+pygame.init()
+
+screen_width = 800
+screen_height = 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Moving Train")
+
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+train_width = 100
+train_height = 50
+train_x = 0
+train_y = screen_height - train_height - 50
+train_speed = 5
+
+running = True
+playing = False
+while running:
+    screen.fill(WHITE)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                playing = True
+
+    if playing:
+        train_x += train_speed
+        if train_x > screen_width:
+            train_x = -train_width
+
+    pygame.draw.rect(screen, BLACK, (train_x, train_y, train_width, train_height))
+
+    pygame.display.flip()
+
+    pygame.time.Clock().tick(60)
+
+pygame.quit()
+sys.exit()
+
